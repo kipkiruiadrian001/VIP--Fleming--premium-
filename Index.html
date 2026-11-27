@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIP Fleming Premium - Join Now</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial}
+body{background:#0b1220;color:#fff}
+.top{background:linear-gradient(135deg,#0ea5e9,#16a34a);padding:24px;text-align:center}
+.top h1{font-size:25px} .top p{opacity:.9;font-size:13px;margin-top:5px}
+.top .badge2{background:rgba(0,0,0,.25);padding:6px 14px;border-radius:20px;font-size:12px;display:inline-block;margin-top:10px}
+.wrap{max-width:920px;margin:auto;padding:16px}
+.card{background:#16203a;border:1px solid #26314d;border-radius:16px;padding:18px;margin-top:16px}
+.card h2{font-size:16px;color:#4ade80;margin-bottom:6px}
+.small{font-size:12.5px;color:#94a3b8;line-height:1.6}
+input{width:100%;padding:12px;margin:7px 0;background:#0b1220;border:1px solid #334155;border-radius:10px;color:#fff;outline:none}
+label{font-size:12px;color:#94a3b8}
+.btn{width:100%;padding:13px;border:none;border-radius:10px;font-weight:700;cursor:pointer;margin-top:10px;font-size:15px}
+.btn-green{background:#16a34a;color:#fff} .btn-blue{background:#0ea5e9;color:#fff} .btn-yellow{background:#eab308;color:#000} .btn-red{background:#dc2626;color:#fff} .btn-purple{background:#7c3aed;color:#fff}
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:650px){.grid{grid-template-columns:1fr 1fr}}
+.plan{background:#0b1220;border:2px solid #334155;border-radius:14px;padding:14px;text-align:center;cursor:pointer}
+.plan.active{border-color:#16a34a;background:#14532d}
+.plan b{font-size:19px} .plan span{color:#4ade80;font-size:13px}
+.paybox{background:#fef3c7;color:#111;padding:16px;border-radius:12px;font-size:14px;line-height:1.8}
+.paybox b{color:#000}
+.copyBtn{background:#111;color:#fff;border:none;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:11px;margin-left:6px}
+table{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px}
+td{padding:9px;border-bottom:1px solid #334155;text-align:left;vertical-align:top}
+.badge{padding:4px 9px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block}
+.activeB{background:#16a34a} .pendingB{background:#eab308;color:#000} .expiredB{background:#dc2626}
+.tabs{display:flex;gap:8px;margin-top:16px}
+.tabs button{flex:1;padding:12px;border-radius:10px;border:none;cursor:pointer;font-weight:700;background:#1e293b;color:#fff}
+.tabs button.on{background:#16a34a}
+.hidden{display:none}
+.stat{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.stat div{flex:1;background:#0b1220;padding:12px;border-radius:12px;text-align:center;min-width:110px}
+.stat b{font-size:22px}
+.notice{background:#14532d;border:1px solid #16a34a;padding:12px;border-radius:12px;font-size:12.5px;line-height:1.6;margin-top:14px}
+</style>
+</head>
+<body>
+<div class="top">
+  <h1>👑 VIP FLEMING PREMIUM</h1>
+  <p>Pay • Send M-Pesa Code • Bot Adds You Automatic • Bot Removes You When Plan Ends</p>
+  <span class="badge2">🤖 BOT AUTOMATIC • NO MANUAL WORK</span>
+</div>
+<div class="wrap">
+  <div class="tabs">
+    <button id="tabUser" class="on" onclick="showTab('user')">👤 CUSTOMER - Join VIP</button>
+    <button id="tabAdmin" onclick="showTab('admin')">🔐 ADMIN - Control Bot</button>
+  </div>
+  <div id="userView">
+    <div class="card"><h2>1. Choose Your Plan</h2><div class="grid" id="plans"></div><p class="small" id="selectedPlanText"></p></div>
+    <div class="card"><h2>2. Pay Via M-Pesa Paybill</h2>
+      <div class="paybox">
+        <b>HOW TO PAY:</b><br>
+        1. M-Pesa > Lipa na M-Pesa > Paybill<br>
+        2. Business No: <b style="font-size:18px">714888</b> <button class="copyBtn" onclick="copyText('714888')">Copy</button><br>
+        3. Account No: <b style="font-size:18px">467034</b> <button class="copyBtn" onclick="copyText('467034')">Copy</button><br>
+        4. Amount: <b id="payAmount" style="font-size:18px">KSh 150</b><br>
+        5. Enter PIN > Send<br>
+        6. Copy Code from SMS like <b>QK7X9A1B2C</b>
+      </div>
+    </div>
+    <div class="card"><h2>3. Submit Your M-Pesa Code</h2>
+      <label>Full Name</label><input id="custName" placeholder="e.g John Kamau">
+      <label>Telegram Username (must start with @)</label><input id="custTelegram" placeholder="e.g @johnkamau">
+      <label>WhatsApp Number</label><input id="custPhone" placeholder="e.g 0799865201">
+      <label>M-Pesa Code</label><input id="mpesaCode" placeholder="e.g QK7X9A1B2C">
+      <label>Telegram User ID - IMPORTANT for Bot to remove you automatic (Get from @userinfobot)</label><input id="custTgId" placeholder="e.g 123456789 - Send /start to @userinfobot">
+      <button class="btn btn-green" onclick="submitPayment()">✅ I HAVE PAID - SEND CODE</button>
+      <p class="small" id="submitMsg"></p>
+      <p class="small">⚠️ Telegram ID ni lazima kwa Bot kukuondoa automatic. Bila ID, Bot haiwezi kukutoa. Nenda Telegram > Tafuta @userinfobot > /start > Copy ID yako.</p>
+    </div>
+    <div class="card"><h2>Check Your Status</h2><label>Enter M-Pesa Code</label><input id="checkCode" placeholder="Enter Code"><button class="btn btn-blue" onclick="checkStatus()">Check My Status</button><p id="checkResult" class="small"></p><p class="small">Need help? WhatsApp: <b>0799865201</b></p></div>
+  </div>
+  <div id="adminView" class="hidden">
+    <div class="card"><h2>🔐 Admin Login</h2><p class="small">Default: amos / 1234</p>
+      <div id="loginBox"><input id="adminUser" placeholder="Username"><input id="adminPass" type="password" placeholder="Password"><button class="btn btn-purple" onclick="adminLogin()">Login as Admin</button></div>
+      <div id="adminLogged" class="hidden"><p style="color:#4ade80;font-weight:700">✅ Admin Logged In</p><button class="btn btn-red" onclick="adminLogout()">Logout</button></div>
+    </div>
+    <div id="adminPanel" class="hidden">
+      <div class="card"><h2>🤖 1. BOT SETUP - Do Once</h2>
+        <p class="small">Bot Token from @BotFather. Private Channel ID for VIP Fleming Premium (NOT Public Channel).</p>
+        <label>Bot Token</label><input id="botToken" type="password" placeholder="123456:ABC...">
+        <label>Private Channel ID (e.g -1001234567890) - Get from @getmyid_bot</label><input id="channelId" placeholder="-100...">
+        <label>Public Channel Link (for marketing - e.g https://t.me/amospublic)</label><input id="publicLink" placeholder="https://t.me/...">
+        <button class="btn btn-blue" onclick="saveSettings()">Save Bot Settings</button>
+        <button class="btn btn-yellow" onclick="testBot()">Test Bot Connection</button>
+        <p id="botStatus" class="small"></p>
+        <div class="notice">✅ <b>Public Channel:</b> Unapost Website Link huko.<br>🔒 <b>Private Channel (VIP Fleming Premium):</b> Bot inaongeza / inatoa watu hapa tu.</div>
+      </div>
+      <div class="card"><h2>📊 Dashboard</h2><div class="stat"><div>Total<br><b id="statTotal">0</b></div><div>Active<br><b id="statActive" style="color:#4ade80">0</b></div><div>Pending<br><b id="statPending" style="color:#eab308">0</b></div><div>Expired<br><b id="statExpired" style="color:#f87171">0</b></div></div><p class="small">Server inacheck kila dakika. Plan ikiisha, Bot inamtoa user automatic kutoka Private Channel.</p></div>
+      <div class="card"><h2>🧾 Payment Requests</h2><p class="small">Check M-Pesa App > Code + Amount (Paybill 714888 / Account 467034) > Approve. Bot itatengeneza Invite Link yenyewe.</p><div id="requestsList"></div></div>
+      <div class="card"><h2>👥 All Members</h2><div id="membersList"></div><button class="btn btn-yellow" onclick="checkExpiry()">🔄 Check Expiry Now - Bot Removes Expired</button><button class="btn btn-red" onclick="clearAll()">Clear All Data</button></div>
+      <div class="card"><h2>🔐 Change Password</h2><input id="newPass" placeholder="New password"><button class="btn btn-purple" onclick="changePass()">Change Password</button></div>
+    </div>
+  </div>
+</div>
+<script>
+const PLANS=[
+ {id:'weekly',name:'Weekly',days:7,price:150},
+ {id:'2weeks',name:'2 Weeks',days:14,price:220},
+ {id:'3weeks',name:'3 Weeks',days:21,price:349},
+ {id:'monthly',name:'Monthly',days:30,price:470},
+ {id:'2months',name:'2 Months',days:60,price:600},
+];
+let selectedPlan=PLANS[0];
+let isAdmin=localStorage.getItem('fleming_admin')==='true';
+let users=JSON.parse(localStorage.getItem('fleming_users_v2')||'[]');
+let settings=JSON.parse(localStorage.getItem('fleming_settings_v2')||'{"botToken":"","channelId":"","publicLink":""}');
+const CHANNEL="VIP Fleming Premium";
+function copyText(t){navigator.clipboard.writeText(t);alert("Copied: "+t);}
+function renderPlans(){
+ document.getElementById('plans').innerHTML=PLANS.map(p=>`<div class="plan ${p.id===selectedPlan.id?'active':''}" onclick="selectPlan('${p.id}')"><b>${p.name}</b><br><span>KSh ${p.price}</span><br><small>${p.days} Days</small></div>`).join('');
+ document.getElementById('selectedPlanText').innerText=`Selected: ${selectedPlan.name} - KSh ${selectedPlan.price} - ${selectedPlan.days} Days - ${CHANNEL}`;
+ document.getElementById('payAmount').innerText=`KSh ${selectedPlan.price}`;
+}
+function selectPlan(id){selectedPlan=PLANS.find(p=>p.id===id);renderPlans();}
+function showTab(t){
+ document.getElementById('userView').classList.toggle('hidden',t!=='user');
+ document.getElementById('adminView').classList.toggle('hidden',t!=='admin');
+ document.getElementById('tabUser').className=t==='user'?'on':'';
+ document.getElementById('tabAdmin').className=t==='admin'?'on':'';
+}
+async function submitPayment(){
+ let name=document.getElementById('custName').value.trim();
+ let tg=document.getElementById('custTelegram').value.trim();
+ let phone=document.getElementById('custPhone').value.trim();
+ let code=document.getElementById('mpesaCode').value.trim().toUpperCase();
+ let tgId=document.getElementById('custTgId').value.trim();
+ if(!name||!tg||!phone||!code) return alert("Jaza kila kitu: Name, Telegram @, Phone, M-Pesa Code");
+ if(!tg.startsWith('@')) return alert("Telegram lazima ianze na @");
+ if(users.find(u=>u.code===code)) return alert("Hii Code imeshatumika!");
+ // Send to server (server saves it)
+ try{
+   let r=await fetch('/api/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,telegram:tg,phone,code,tgId,plan:selectedPlan.name,days:selectedPlan.days,price:selectedPlan.price})});
+   let d=await r.json();
+   if(d.ok){ users.unshift(d.user); localStorage.setItem('fleming_users_v2',JSON.stringify(users)); }
+ }catch(e){
+   let user={id:Date.now(),name,telegram:tg,phone,code,tgId,plan:selectedPlan.name,days:selectedPlan.days,price:selectedPlan.price,status:'pending',createdAt:new Date().toLocaleString(),expiresAt:'',inviteLink:''};
+   users.unshift(user); localStorage.setItem('fleming_users_v2',JSON.stringify(users));
+ }
+ document.getElementById('submitMsg').innerHTML=`✅ <b>Imetumwa!</b> Code: <b>${code}</b> - ${selectedPlan.name} (KSh ${selectedPlan.price})<br>Subiri Admin athibitishe.`;
+ renderAdmin(); alert("Imetumwa! Subiri Admin akubali.");
+}
+function checkStatus(){
+ let code=document.getElementById('checkCode').value.trim().toUpperCase();
+ let u=users.find(x=>x.code===code);
+ if(!u) return document.getElementById('checkResult').innerHTML="❌ Code haijapatikana.";
+ if(u.status==='pending') document.getElementById('checkResult').innerHTML=`⏳ <b>PENDING</b> - Admin bado hajathibitisha ${code}.`;
+ if(u.status==='active') document.getElementById('checkResult').innerHTML=`✅ <b>ACTIVE</b> - ${u.name} | ${u.plan} | Expires: ${u.expiresAt}<br>Invite Link: <a href="${u.inviteLink}" style="color:#4ade80">${u.inviteLink}</a>`;
+ if(u.status==='expired') document.getElementById('checkResult').innerHTML=`❌ <b>EXPIRED</b> - Bot imekuondoa. Lipa tena: Paybill 714888 / Account 467034`;
+}
+function adminLogin(){
+ let u=document.getElementById('adminUser').value.trim();
+ let p=document.getElementById('adminPass').value.trim();
+ let saved=localStorage.getItem('fleming_admin_pass')||'1234';
+ if(u==='amos'&&p===saved){isAdmin=true;localStorage.setItem('fleming_admin','true');updateAdminUI();renderAdmin();alert("Karibu Admin!");}
+ else alert("Wrong. Default: amos / 1234");
+}
+function adminLogout(){isAdmin=false;localStorage.removeItem('fleming_admin');updateAdminUI();}
+function updateAdminUI(){
+ document.getElementById('loginBox').classList.toggle('hidden',isAdmin);
+ document.getElementById('adminLogged').classList.toggle('hidden',!isAdmin);
+ document.getElementById('adminPanel').classList.toggle('hidden',!isAdmin);
+ if(isAdmin){document.getElementById('botToken').value=settings.botToken;document.getElementById('channelId').value=settings.channelId;document.getElementById('publicLink').value=settings.publicLink;}
+}
+function saveSettings(){
+ settings.botToken=document.getElementById('botToken').value.trim();
+ settings.channelId=document.getElementById('channelId').value.trim();
+ settings.publicLink=document.getElementById('publicLink').value.trim();
+ localStorage.setItem('fleming_settings_v2',JSON.stringify(settings));
+ fetch('/api/settings',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(settings)}).catch(()=>{});
+ alert("Bot Settings zimesave! Sasa bonyeza Test Bot.");
+}
+async function testBot(){
+ if(!settings.botToken) return alert("Weka Bot Token kwanza");
+ document.getElementById('botStatus').innerText="Inajaribu...";
+ try{
+  let r=await fetch('/api/test-bot',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:settings.botToken})});
+  let d=await r.json();
+  document.getElementById('botStatus').innerText=d.ok?`✅ Bot Connected: @${d.result.username} - Sasa iko tayari kuongeza/kutoa watu.`:"❌ Token sio sahihi.";
+ }catch(e){document.getElementById('botStatus').innerText="⚠️ Server bado haijaanza. Anzisha server.js kwanza.";}
+}
+function changePass(){let np=document.getElementById('newPass').value.trim();if(np.length<4) return alert("Password iwe 4+");localStorage.setItem('fleming_admin_pass',np);alert("Password mpya: "+np);}
+async function approveUser(id){
+ let u=users.find(x=>x.id===id);
+ if(!settings.botToken||!settings.channelId) return alert("Weka Bot Token + Private Channel ID kwanza kwenye BOT SETUP!");
+ if(!confirm(`Thibitisha:\n${u.name} - ${u.telegram} (ID: ${u.tgId||'Hakuna'})\nCode ${u.code} - KSh ${u.price} - ${u.plan}\nPaybill 714888 / Account 467034\nUmeona pesa?`)) return;
+ try{
+  let r=await fetch('/api/approve',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:u.id,token:settings.botToken,channelId:settings.channelId})});
+  let d=await r.json();
+  if(d.ok){
+    u.status='active'; u.expiresAt=d.expiresAt; u.inviteLink=d.inviteLink;
+    localStorage.setItem('fleming_users_v2',JSON.stringify(users)); renderAdmin();
+    alert(`✅ BOT imetengeneza Invite Link!\nExpires: ${d.expiresAt}`);
+    window.open(`https://wa.me/254${u.phone.replace(/^0/,'')}?text=${encodeURIComponent(`Hi ${u.name}, payment KSh ${u.price} (${u.plan}) imethibitishwa! Karibu VIP Fleming Premium 👑\n\nBOT Invite Link: ${d.inviteLink}\nExpires: ${d.expiresAt}\n\n- Amos Electronic`)}`,'_blank');
+  } else alert("Bot Error: "+d.error);
+ }catch(e){alert("Server error: "+e.message);}
+}
+async function rejectUser(id){
+ if(!confirm("Reject?")) return;
+ await fetch('/api/reject',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id})}).catch(()=>{});
+ users=users.filter(x=>x.id!==id); localStorage.setItem('fleming_users_v2',JSON.stringify(users)); renderAdmin();
+}
+async function removeUser(id){
+ let u=users.find(x=>x.id===id);
+ if(!confirm(`Bot imtoe ${u.name} kutoka VIP Fleming Premium?`)) return;
+ await fetch('/api/remove-user',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:u.id,token:settings.botToken,channelId:settings.channelId})}).catch(()=>{});
+ u.status='expired'; localStorage.setItem('fleming_users_v2',JSON.stringify(users)); renderAdmin(); alert("Bot imemtoa!");
+}
+async function renewUser(id){
+ let u=users.find(x=>x.id===id);
+ let r=await fetch('/api/renew',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:u.id,token:settings.botToken,channelId:settings.channelId})});
+ let d=await r.json();
+ if(d.ok){u.status='active';u.expiresAt=d.expiresAt;u.inviteLink=d.inviteLink;localStorage.setItem('fleming_users_v2',JSON.stringify(users));renderAdmin();alert("Renewed! Bot imetuma Invite Link mpya.");}
+}
+async function checkExpiry(){
+ let r=await fetch('/api/check-expiry',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:settings.botToken,channelId:settings.channelId})}).catch(()=>null);
+ if(r){let d=await r.json(); if(d.removed>0) alert(`Bot imetoa watu ${d.removed} wali-expire.`); else alert("Hakuna aliye-expire."); 
+   // Refresh list from server
+   let rr=await fetch('/api/users'); let dd=await rr.json(); if(dd.users){users=dd.users;localStorage.setItem('fleming_users_v2',JSON.stringify(users));}
+ }
+ renderAdmin();
+}
+function clearAll(){if(confirm("Futa data yote?")){users=[];localStorage.removeItem('fleming_users_v2');fetch('/api/clear',{method:'POST'}).catch(()=>{});renderAdmin();}}
+function renderAdmin(){
+ document.getElementById('statTotal').innerText=users.length;
+ document.getElementById('statActive').innerText=users.filter(u=>u.status==='active').length;
+ document.getElementById('statPending').innerText=users.filter(u=>u.status==='pending').length;
+ document.getElementById('statExpired').innerText=users.filter(u=>u.status==='expired').length;
+ let pending=users.filter(u=>u.status==='pending');
+ document.getElementById('requestsList').innerHTML=pending.length===0?"<p class='small'>Hakuna request mpya.</p>":pending.map(u=>`<table><tr><td><b>${u.name}</b><br>${u.telegram} | ID: ${u.tgId||'HAKUNA - Bot haiwezi kutoa bila ID'} | ${u.phone}<br>Code: <b style="color:#eab308">${u.code}</b> | ${u.plan} - KSh ${u.price}<br><small>${u.createdAt}</small></td><td><button class="btn btn-green" style="padding:8px" onclick="approveUser(${u.id})">✅ Approve - Bot Creates Link</button><br><button class="btn btn-red" style="padding:8px" onclick="rejectUser(${u.id})">Reject</button></td></tr></table>`).join('');
+ document.getElementById('membersList').innerHTML=users.length===0?"<p class='small'>Hakuna members bado.</p>":users.map(u=>`<table><tr><td><b>${u.name}</b> ${u.telegram} | ID: ${u.tgId||'-'}<br>Plan: ${u.plan} - KSh ${u.price}<br>Status: <span class="badge ${u.status==='active'?'activeB':u.status==='pending'?'pendingB':'expiredB'}">${u.status.toUpperCase()}</span><br>Expires: ${u.expiresAt||'-'}<br>Code: ${u.code}</td><td><button class="btn btn-blue" style="padding:8px" onclick="renewUser(${u.id})">Renew - Bot New Link</button><br><button class="btn btn-red" style="padding:8px" onclick="removeUser(${u.id})">Bot Remove</button></td></tr></table>`).join('');
+}
+async function loadFromServer(){try{let r=await fetch('/api/users');let d=await r.json();if(d.users&&d.users.length>0){users=d.users;localStorage.setItem('fleming_users_v2',JSON.stringify(users));}}catch(e){}renderAdmin();}
+renderPlans();updateAdminUI();loadFromServer();
+</script>
+</body>
+</html>
