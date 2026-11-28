@@ -48,8 +48,8 @@ td{padding:9px;border-bottom:1px solid #334155;text-align:left;vertical-align:to
 </div>
 <div class="wrap">
   <div class="tabs">
-    <button id="tabUser" class="on" onclick="showTab('user')">👤 CUSTOMER - Join VIP</button>
-    <button id="tabAdmin" onclick="showTab('admin')">🔐 ADMIN - Control Bot</button>
+  <button id="tabUser" class="on" onclick="showTab('user')" style="width:100%">👤 CUSTOMER - Join VIP</button>
+  <button id="tabAdmin" onclick="showTab('admin')" style="display:none">🔐 ADMIN</button>
   </div>
   <div id="userView">
     <div class="card"><h2>1. Choose Your Plan</h2><div class="grid" id="plans"></div><p class="small" id="selectedPlanText"></p></div>
@@ -238,6 +238,12 @@ function renderAdmin(){
 }
 async function loadFromServer(){try{let r=await fetch('/api/users');let d=await r.json();if(d.users&&d.users.length>0){users=d.users;localStorage.setItem('fleming_users_v2',JSON.stringify(users));}}catch(e){}renderAdmin();}
 renderPlans();updateAdminUI();loadFromServer();
+// SECRET ADMIN LINK - Only you know this
+// Customers will never see Admin tab
+if(window.location.search.includes('admin=amos123')){
+  document.getElementById('tabAdmin').style.display='block';
+  showTab('admin');
+};
 </script>
 </body>
 </html>
